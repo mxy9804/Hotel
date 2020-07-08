@@ -2,6 +2,8 @@ package com.hotel.entity;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 public class Order {
     /**
      *
@@ -55,6 +57,7 @@ public class Order {
      *
      * @mbg.generated Wed Jul 08 17:23:00 CST 2020
      */
+   
     private Double orderPrice;
 
     /**
@@ -73,6 +76,7 @@ public class Order {
      *
      * @mbg.generated Wed Jul 08 17:23:00 CST 2020
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date orderCredate;
 
     /**
@@ -82,6 +86,7 @@ public class Order {
      *
      * @mbg.generated Wed Jul 08 17:23:00 CST 2020
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date checkinDate;
 
     /**
@@ -91,6 +96,7 @@ public class Order {
      *
      * @mbg.generated Wed Jul 08 17:23:00 CST 2020
      */
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date checkoutDate;
 
     /**
