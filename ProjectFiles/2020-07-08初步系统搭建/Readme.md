@@ -3,3 +3,4 @@
 - 进行了默认主页配置
 - 修改了pom文件和application.yml文件以支持mybatis和jsp
 - 在src/main/webapp文件夹下拷贝了前端模板
+- 使用了邓丰伟同学提供的新版数据库，主要对外键等表格关系进行了修改
