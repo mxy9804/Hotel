@@ -1,2 +1,2 @@
 # Hotel
-Junior summer school practical training project
+College summer school practical training project
