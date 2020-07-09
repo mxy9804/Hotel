@@ -125,7 +125,8 @@
 														</tr>
 														<tr>
 															<td><b>顾客电话:</b></td>
-															<td><input type="tel" id="customerTele" name="customerTele" class="form-control"/></td>
+															<td><input type="number" id="customerTele" name="customerTele" step="1" 
+																maxlength="100" class="form-control"/></td>
 														</tr>
 														<tr>
 															<td><b>顾客身份证号:</b></td>

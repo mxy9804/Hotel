@@ -1,13 +1,13 @@
 #配置视图解析器
 spring:
- datasource:
+  datasource:
     url: jdbc:mysql://127.0.0.1:3306/hotel?useUnicode=true&characterEncoding=utf8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&useSSL=false&serverTimezone=Asia/Shanghai
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
- mvc:
+  mvc:
     view:
-      prefix: /WEB-INF/jsp
+      prefix: /WEB-INF/jsp/
       suffix: .jsp
 
 server:
@@ -15,8 +15,9 @@ server:
     jsp:
       init-parameters:
         development: true   #用于实现JSP页面热部署
+
 mybatis:
-  mapper-locations: classpath:com/mxy/mapper/xml/*.xml
-  type-aliases-package: com.mxy.entity
+  mapper-locations: classpath:com/hotel/mapper/xml/*.xml
+  type-aliases-package: com.hotel.entity
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

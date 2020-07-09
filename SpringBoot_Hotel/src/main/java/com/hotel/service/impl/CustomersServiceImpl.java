@@ -3,12 +3,13 @@ package com.hotel.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.hotel.entity.Customer;
 import com.hotel.entity.CustomerExample;
 import com.hotel.mapper.CustomerMapper;
 import com.hotel.service.CustomersService;
-
+@Service
 public class CustomersServiceImpl implements CustomersService {
 
 	
@@ -29,7 +30,7 @@ public class CustomersServiceImpl implements CustomersService {
 	@Override
 	public void doAdd(Customer customer) {
 		// TODO Auto-generated method stub
-		customer.setCustomerStatus((byte) 1);
+		customer.setCustomerStatus((byte)1);
 		customerMapper.insert(customer);
 	}
 
@@ -44,6 +45,7 @@ public class CustomersServiceImpl implements CustomersService {
 	@Override
 	public void doModify(Customer customer) {
 		// TODO Auto-generated method stub
+		customer.setCustomerStatus((byte)1);
 		customerMapper.updateByPrimaryKey(customer);
 	}
 
