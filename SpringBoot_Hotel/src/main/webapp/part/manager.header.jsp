@@ -8,7 +8,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 			<nav class="navbar navbar-default top-navbar" role="navigation">
 				<div class="navbar-header">
 					<a class="navbar-brand" href="#">
-						<strong>商城后台管理系统</strong>
+						<strong>酒店后台管理系统</strong>
 					</a>
 				</div>
 				<ul class="nav navbar-top-links navbar-right">

@@ -9,8 +9,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<nav class="navbar-default navbar-side" role="navigation">
 	<div class="sidebar-collapse">
 	<ul class="nav" id="main-menu">
-		<li><a href="<%=basePath %>statistical.html">
-		<i class="fa fa-desktop"></i>统计信息</a></li>
+		<li><a href="<%=basePath %>showcustomers.do">
+		<i class="fa fa-desktop"></i>顾客管理</a></li>
 		<li><a href="<%=basePath %>showcus.html">
 		<i class="fa fa-table"></i>客户管理 </a></li>
 		<li><a href="<%=basePath %>showgoods.html">
