@@ -11,7 +11,7 @@
  Target Server Version : 50536
  File Encoding         : 65001
 
- Date: 08/07/2020 17:19:05
+ Date: 10/07/2020 08:47:19
 */
 
 SET NAMES utf8mb4;
@@ -30,10 +30,6 @@ CREATE TABLE `tab_admin`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
--- Records of tab_admin
--- ----------------------------
-
--- ----------------------------
 -- Table structure for tab_customer
 -- ----------------------------
 DROP TABLE IF EXISTS `tab_customer`;
@@ -43,14 +39,10 @@ CREATE TABLE `tab_customer`  (
   `customer_sex` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `customer_cardnumber` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `customer_age` int(11) NULL DEFAULT NULL,
-  `customer_tele` int(11) NULL DEFAULT NULL,
+  `customer_tele` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `customer_status` tinyint(4) NULL DEFAULT NULL,
   PRIMARY KEY (`customer_id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of tab_customer
--- ----------------------------
+) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Table structure for tab_order
@@ -61,20 +53,15 @@ CREATE TABLE `tab_order`  (
   `customer_id` int(11) NULL DEFAULT NULL,
   `room_id` int(11) NULL DEFAULT NULL,
   `reception_id` int(11) NULL DEFAULT NULL,
-  `room_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `roomtype_id` int(11) NULL DEFAULT NULL,
   `order_price` double NULL DEFAULT NULL,
   `order_status` tinyint(4) NULL DEFAULT NULL,
   `order_credate` datetime NULL DEFAULT NULL,
   `checkin_date` date NULL DEFAULT NULL,
   `checkout_date` date NULL DEFAULT NULL,
   `customer_number` int(11) NULL DEFAULT NULL,
-  `customer_phone` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`order_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of tab_order
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for tab_reception
@@ -86,10 +73,6 @@ CREATE TABLE `tab_reception`  (
   `reception_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`reception_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of tab_reception
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for tab_room
@@ -104,10 +87,6 @@ CREATE TABLE `tab_room`  (
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
--- Records of tab_room
--- ----------------------------
-
--- ----------------------------
 -- Table structure for tab_stuff
 -- ----------------------------
 DROP TABLE IF EXISTS `tab_stuff`;
@@ -116,16 +95,12 @@ CREATE TABLE `tab_stuff`  (
   `stuff_name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `stuff_age` int(11) NULL DEFAULT NULL,
   `stuff_type` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `stuff_tele` int(11) NULL DEFAULT NULL,
+  `stuff_tele` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `stuff_cardnumber` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `stuff_adress` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `stuff_status` tinyint(4) NULL DEFAULT NULL,
   PRIMARY KEY (`stuff_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of tab_stuff
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for tab_type
@@ -141,9 +116,5 @@ CREATE TABLE `tab_type`  (
   `type_status` tinyint(4) NULL DEFAULT NULL,
   PRIMARY KEY (`type_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
-
--- ----------------------------
--- Records of tab_type
--- ----------------------------
 
 SET FOREIGN_KEY_CHECKS = 1;
