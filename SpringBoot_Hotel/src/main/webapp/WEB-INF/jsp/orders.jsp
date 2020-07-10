@@ -33,7 +33,7 @@
 							<!-- 面板头放：页面标题，刷新按钮，添加按钮 -->
 							<div class="panel-heading">
 								<font size="4">订单管理</font> 
-								<a href="<%=basePath%>showcustomers.do"> 
+								<a href="<%=basePath%>showorders.do"> 
 									<span class="glyphicon glyphicon-repeat"></span>
 								</a>
 								<span style="float: right">
@@ -56,7 +56,7 @@
 												<th>顾客电话</th>
 												<th>房间类型</th>
 												<th>房间价格（元/天）</th>	
-												<th>房间编号</th>				
+												<th>房间号</th>				
 												<th>入住日期</th>	
 												<th>入住人数</th>
 												<th>退房日期</th>
@@ -77,7 +77,7 @@
 														<td>${order.customerTele }</td>
 														<td>${order.typeName}</td>
 														<td>${order.typePrice }</td>
-														<td>${order.roomId }</td>
+														<td>${order.roomNumber }</td>
 														<td><fmt:formatDate value="${order.checkinDate }" pattern="yyyy-MM-dd"/></td>
 														<td>${order.customerNumber }</td>
 														<td><fmt:formatDate value="${order.checkoutDate }" pattern="yyyy-MM-dd"/></td>														
@@ -151,8 +151,8 @@
 																maxlength="11" class="form-control"/></td>
 														</tr>
 														<tr>
-															<td><b>房间编号:</b></td>
-															<td><select id="roomId" name="roomId" class="form-control">
+															<td><b>房间号:</b></td>
+															<td><select id="roomNumber" name="roomNumber" class="form-control">
 																<option>服装</option>
 																<option>家电</option>
 																<option>食品</option>
