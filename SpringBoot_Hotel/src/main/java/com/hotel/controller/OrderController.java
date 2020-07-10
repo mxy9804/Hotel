@@ -29,7 +29,7 @@ public class OrderController {
 	public String showOrder(Model model){
 		List<Map<String,Object>> list = orderService.findOrder();
 		model.addAttribute("list", list);
-		return "order";
+		return "orders";
 	}
 /*	
 	@RequestMapping("showdetail")
@@ -41,7 +41,7 @@ public class OrderController {
 	@RequestMapping("removeorder")
 	public String removeOrder(int oid){
 		orderService.doRemove(oid);
-		return "forward:showorder.do";
+		return "forward:showorders.do";
 	}
 	
 	
