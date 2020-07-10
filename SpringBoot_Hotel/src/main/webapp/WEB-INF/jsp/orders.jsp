@@ -13,7 +13,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta content="" name="description" />
 <meta content="webthemez" name="author" />
-<title>顾客管理</title>
+<title>订单管理</title>
 <jsp:include page="/part/manager.css.jsp"></jsp:include>
 </head>
 <body>
@@ -32,14 +32,14 @@
 						<div class="panel panel-default">
 							<!-- 面板头放：页面标题，刷新按钮，添加按钮 -->
 							<div class="panel-heading">
-								<font size="4">顾客信息管理</font> 
+								<font size="4">订单管理</font> 
 								<a href="<%=basePath%>showcustomers.do"> 
 									<span class="glyphicon glyphicon-repeat"></span>
 								</a>
 								<span style="float: right">
 									<button type="button" class="btn btn-default btn-sm"
 										data-toggle="modal" data-target="#myModal" onclick="editInfo(this,0)">
-										<span class="glyphicon glyphicon-plane"></span> 新增顾客信息
+										<span class="glyphicon glyphicon-plane"></span> 新增订单
 									</button>
 								</span>
 							</div>
@@ -50,30 +50,44 @@
 										id="dataTables-example">
 										<thead>
 											<tr>
-												<th>顾客编号</th>
+												<th>订单编号</th>
+												<th>前台（经办人）编号</th>
 												<th>顾客姓名</th>
-												<th>顾客性别</th>
-												<th>顾客年龄</th>
 												<th>顾客电话</th>
-												<th>顾客身份证号</th>																			
+												<th>房间类型</th>
+												<th>房间价格（元/天）</th>	
+												<th>房间编号</th>				
+												<th>入住日期</th>	
+												<th>入住人数</th>
+												<th>退房日期</th>
+												<th>订单创建日期</th>
+												<th>订单总价</th>
+												<th>订单状态</th>																				
 												<th>修改</th>
 												<th>删除</th>
 											</tr>
 										</thead>
 										<tbody>
 											<c:if test="${not empty list }">
-												<c:forEach var="customers" items="${list }">
+												<c:forEach var="order" items="${list }">
 													<tr>
-														<td>${customers.customerId }</td>
-														<td>${customers.customerName }</td>
-														<td>${customers.customerSex }</td>
-														<td>${customers.customerAge }</td>
-														<td>${customers.customerTele }</td>
-														<td>${customers.customerCardnumber }</td>
+														<td>${order.orderId}</td>
+														<td>${order.receptionId }</td>
+														<td>${order.customerName }</td>
+														<td>${order.customerTele }</td>
+														<td>${order.typeName}</td>
+														<td>${order.typePrice }</td>
+														<td>${order.roomId }</td>
+														<td><fmt:formatDate value="${order.checkinDate }" pattern="yyyy-MM-dd"/></td>
+														<td>${order.customerNumber }</td>
+														<td><fmt:formatDate value="${order.checkoutDate }" pattern="yyyy-MM-dd"/></td>														
+														<td><fmt:formatDate value="${order.orderCredate }" pattern="yyyy-MM-dd"/></td>														
+														<td>${order.orderPrice }</td>
+														<td>${order.orderStatus }</td>
 														<td><a id="edit" href="#" data-toggle="modal" data-target="#myModal" onclick="editInfo(this,1)">
 															<span class="glyphicon glyphicon-edit"></span>
 														</a></td>
-														<td><a href="javascript:doDelete(${customers.customerId })" style="color:red">
+														<td><a href="javascript:doDelete(${order.orderId })" style="color:red">
 															<span class="glyphicon glyphicon-remove"></span>
 														</a></td>
 													</tr>
@@ -96,41 +110,92 @@
 											aria-hidden="true">×</button>
 										<!-- 表单嵌套表格：规范表单格式 -->
 										<form action="" method="post" role="form" id="editForm">
-											<input type="hidden" id="customerId" name="customerId" class="form-control">
+											<input type="hidden" id="orderId" name="orderId" class="form-control">
 											<div class="form-group">
 												<table class="table" style="font: '黑体';">
 													<thead>
 														<tr>
-															<th>顾客信息：</th>
+															<th>订单信息：</th>
 															<th></th>
 														</tr>
 													</thead>
 													<tbody>
 														<tr>
+															<td><b>前台（经办人）编号:</b></td>
+															<td><input type="number" id="receptionId" name="receptionId" step="1" 
+																maxlength="11" class="form-control"/></td>
+														</tr>
+														<tr>
 															<td><b>顾客姓名:</b></td>
 															<td><input type="text" id="customerName" name="customerName" class="form-control"/></td>
 														</tr>
 														<tr>
-															<td><b>顾客性别：</b></td>
-															<td><select id="customerSex" name="customerSex" class="form-control">
-																<option>男</option>
-																<option>女</option>
-															</select>
-															</td>
-														</tr>
-														<tr>
-															<td><b>顾客年龄：</b></td>
-															<td><input type="number" id="customerAge" name="customerAge" step="1" 
-																maxlength="3" class="form-control"/></td>
-														</tr>
-														<tr>
 															<td><b>顾客电话:</b></td>
 															<td><input type="text" id="customerTele" name="customerTele" class="form-control"/></td>
+															
 														</tr>
 														<tr>
-															<td><b>顾客身份证号:</b></td>
-															<td><input type="text" id="customerCardnumber" name="customerCardnumber" class="form-control"/></td>
+															<td><b>房间类型:</b></td>
+															<td><select id="typeName" name="typeName" class="form-control">
+																<option>服装</option>
+																<option>家电</option>
+																<option>食品</option>
+																<option>日用品</option>
+																<option>数码产品</option>
+																<option>虚拟产品</option>
+															</select>
 														</tr>
+														<tr>
+															<td><b>房间价格（元/天）:</b></td>
+															<td><input type="number" id="typePrice" name="typePrice" step="0.01" 
+																maxlength="11" class="form-control"/></td>
+														</tr>
+														<tr>
+															<td><b>房间编号:</b></td>
+															<td><select id="roomId" name="roomId" class="form-control">
+																<option>服装</option>
+																<option>家电</option>
+																<option>食品</option>
+																<option>日用品</option>
+																<option>数码产品</option>
+																<option>虚拟产品</option>
+															</select>
+														</tr>
+														<tr>
+															<td><b>入住日期:</b></td>
+															<td><input type="date" id="checkinDate" name="checkinDate" class="form-control"/></td>
+														</tr>
+														<tr>
+															<td><b>入住人数:</b></td>
+															<td><input type="number" id="customerNumber" name="customerNumber" step="1" 
+																maxlength="2" class="form-control"/></td>
+														</tr>
+														<tr>
+															<td><b>退房日期:</b></td>
+															<td><input type="date" id="checkoutDate" name="checkoutDate" class="form-control"/></td>
+														</tr>
+														<tr>
+															<td><b>订单创建日期:</b></td>
+															<td><input type="date" id="orderCredate" name="orderCredate" class="form-control"/></td>
+														</tr>
+														<tr>
+															<td><b>订单总价:</b></td>
+															<td><input type="number" id="orderPrice" name="orderPrice" step="0.01" 
+																maxlength="11" class="form-control"/></td>
+														</tr>
+														<tr>
+															<td><b>订单状态:</b></td>										
+														    <td><select id="orderStatus" name="orderStatus" class="form-control">
+																<option>服装</option>
+																<option>家电</option>
+																<option>食品</option>
+																<option>日用品</option>
+																<option>数码产品</option>
+																<option>虚拟产品</option>
+															</select>
+														</tr>
+													
+														
 													</tbody>
 												</table>
 												<div class="modal-footer">
@@ -157,9 +222,9 @@
 		if(flag==0){
 			//$(".form-control").val("");
 			$("#editForm").get(0).reset();
-			$("#editForm").attr("action","<%=basePath%>addcustomer.do");
+			$("#editForm").attr("action","<%=basePath%>addorder.do");
 		}else{
-			$("#editForm").attr("action","<%=basePath%>modifycustomer.do");
+			$("#editForm").attr("action","<%=basePath%>modifyorder.do");
 			var customerInfo = obj.parentNode.parentNode.childNodes;
 			console.log(customerInfo);
 			$("#customerId").val(customerInfo[1].innerHTML);
@@ -171,9 +236,9 @@
 		}
 	}
 	
-	function doDelete(customerId){
-		if(confirm("您确定要删除编号为："+customerId+"的顾客信息吗？")){
-			location.href="<%=basePath%>removecustomer.do?customerId="+customerId;
+	function doDelete(orderId){
+		if(confirm("您确定要取消编号为："+orderId+"的订单吗？")){
+			location.href="<%=basePath%>removeorder.do?orderId="+orderId;
 		}
 	}
 </script>
