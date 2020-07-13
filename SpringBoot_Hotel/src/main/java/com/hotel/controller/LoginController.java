@@ -10,6 +10,7 @@ import com.hotel.entity.Admin;
 import com.hotel.service.AdminService;
 
 @Controller
+@RequestMapping("**.do")
 public class LoginController {
 	
 	private AdminService adminService;
@@ -24,9 +25,9 @@ public class LoginController {
 	}
 	
 	@RequestMapping("login")
-	public String doLogin(String aname,String password,HttpServletRequest request)
+	public String doLogin(String adminUsername,String password,HttpServletRequest request)
 	{
-		Admin admin = adminService.findByAnameAndPassword(aname, password);
+		Admin admin = adminService.findByAnameAndPassword(adminUsername, password);
 		if(admin == null)
 		{
 			request.setAttribute("msg", "用户名或密码有误，请重新输入。");
@@ -35,6 +36,7 @@ public class LoginController {
 			request.getSession().setAttribute("admin", admin);
 			return "forward:showstaff.do";
 		}
+		
 	}
 	
 	@RequestMapping("logout")
