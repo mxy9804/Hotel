@@ -136,29 +136,19 @@
 														</tr>
 														<tr>
 															<td><b>房间类型:</b></td>
-															<td><select id="typeName" name="typeName" class="form-control">
-																<option>服装</option>
-																<option>家电</option>
-																<option>食品</option>
-																<option>日用品</option>
-																<option>数码产品</option>
-																<option>虚拟产品</option>
+															<td><select id="typeName" name="typeName" onchange="showrooms(this);" class="form-control" >												
+																<option>请选择</option>
 															</select>
 														</tr>
 														<tr>
 															<td><b>房间价格（元/天）:</b></td>
-															<td><input type="number" id="typePrice" name="typePrice" step="0.01" 
+															<td><input type="number" id="typePrice" name="typePrice"   step="0.01" 
 																maxlength="11" class="form-control"/></td>
 														</tr>
 														<tr>
 															<td><b>房间号:</b></td>
 															<td><select id="roomNumber" name="roomNumber" class="form-control">
-																<option>服装</option>
-																<option>家电</option>
-																<option>食品</option>
-																<option>日用品</option>
-																<option>数码产品</option>
-																<option>虚拟产品</option>
+															<option>请选择</option>
 															</select>
 														</tr>
 														<tr>
@@ -186,12 +176,12 @@
 														<tr>
 															<td><b>订单状态:</b></td>										
 														    <td><select id="orderStatus" name="orderStatus" class="form-control">
-																<option>服装</option>
-																<option>家电</option>
-																<option>食品</option>
-																<option>日用品</option>
-																<option>数码产品</option>
-																<option>虚拟产品</option>
+																<option value="0">服装</option>
+																<option value="1">家电</option>
+																<option value="2">食品</option>
+																<option value="3">日用品</option>
+																<option value="4">数码产品</option>
+																<option value="5">虚拟产品</option>
 															</select>
 														</tr>
 													
@@ -218,6 +208,50 @@
 	<jsp:include page="/part/manager.js.jsp"></jsp:include>
 </body>
 <script type="text/javascript">
+	var prices=new Array();
+	var types=new Array();
+	$.ajax({
+    url:'<%=basePath%>showtypes.do',
+    type:'POST',
+    success:function (data) {
+ 		var flag=0;
+ 		console.log(data)
+        $.each(data, function () {
+            $("#typeName").append("<option value='"+this.typeId+"'>"+this.typeName+"</option>");
+    		//prices.push(this.typePrice);
+       		prices[this.typeId]=this.typePrice;
+       		types[this.typeId]=this.typeName;
+         //   if(flag==0){
+         //   	$("#typePrice").val(data[index].typePrice);
+         //   }
+         //   flag++;
+        });
+        console.log(prices);
+        //使用refresh方法更新UI以匹配新状态。
+        //$('#typeName').selectpicker('refresh');
+        //render方法强制重新渲染引导程序 - 选择ui。
+        //$('#typeName').selectpicker('render');
+    
+    }
+ 
+});
+
+	function showrooms(obj){
+		console.log(obj);
+		$("#typePrice").val(prices[obj.value]);
+		$.get("<%=basePath%>showrooms.do?roomType="+types[obj.value],function(data){
+			console.log(data);
+			$.each(data, function() {
+				$("#roomNumber").append("<option value='>"+this.roomId+"'>"+this.roomNumber+"</option>")
+			})
+			
+		    //使用refresh方法更新UI以匹配新状态。
+	     //   $('#roomNumber').selectpicker('refresh');
+	        //render方法强制重新渲染引导程序 - 选择ui。
+	    //    $('#roomNumber').selectpicker('render');
+		});
+	}
+        
 	function editInfo(obj,flag){
 		if(flag==0){
 			//$(".form-control").val("");

@@ -51,6 +51,14 @@ public class RoomServiceImpl implements RoomService{
 		int i = roomMapper.updateByPrimaryKeySelective(room);
 		return i==1?true:false;
 	}
+
+	@Override
+	public List<Room> findAllRooms(String typeName) {
+		// TODO Auto-generated method stub
+		RoomExample re=new RoomExample();
+		re.createCriteria().andRoomStatusNotEqualTo((byte) 0).andRoomTypeEqualTo(typeName);
+		return roomMapper.selectByExample(re);
+	}
 	
 	
 }

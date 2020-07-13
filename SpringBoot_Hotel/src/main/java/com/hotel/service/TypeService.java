@@ -8,6 +8,7 @@ import com.hotel.entity.TypeExample;
 public interface TypeService {
 
 	List<Type> findAll();
+	List<Type> findAvalTypes();
 	List<Type> findByCondition(TypeExample te);
 	boolean add(Type type);
 	boolean delete(int typeId);
