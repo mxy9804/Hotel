@@ -14,12 +14,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 				<ul class="nav navbar-top-links navbar-right">
 					<li class="dropdown">
 						<a class="dropdown-toggle" data-toggle="dropdown" href="#" aria-expanded="false">
-							${admin.aname }
+							${admin.adminUsername }
 							<i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
 						</a>
 						<ul class="dropdown-menu dropdown-user">
 							<li>
-							<a href="<%=basePath %>logout.html"><i class="fa fa-sign-out fa-fw"></i>
+							<a href="<%=basePath %>logout"><i class="fa fa-sign-out fa-fw"></i>
 								登出
 							</a>
 							</li>
