@@ -1,5 +1,6 @@
 package com.hotel.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +51,22 @@ public class TypeServiceImpl implements TypeService{
 	public boolean update(Type type) {
 		int i = typeMapper.updateByPrimaryKeySelective(type);
 		return i==1?true:false;
+	}
+
+	@Override
+	public List<Type> findAvalTypes() {
+		// TODO Auto-generated method stub
+		
+		TypeExample typeExample=new TypeExample();
+		typeExample.createCriteria().andTypeStatusNotEqualTo((byte) 0);
+		List<Type> list=typeMapper.selectByExample(typeExample);
+		return list;
+	//	List<String> ls=new ArrayList();
+	//	for(Type type:list)
+	//	{
+	//		ls.add(type.getTypeName());
+	//	}
+	//	return ls;
 	}
 	
 	
