@@ -136,7 +136,7 @@
 														</tr>
 														<tr>
 															<td><b>房间类型:</b></td>
-															<td><select id="typeName" name="typeName" onchange="showrooms(this);" class="form-control" >												
+															<td><select id="typeName" name="typeName" onchange="showrooms(this)" class="form-control" >												
 																<option>请选择</option>
 															</select>
 														</tr>
@@ -238,18 +238,19 @@
 
 	function showrooms(obj){
 		console.log(obj);
+		$("#roomNumber").val(null).trigger("change");
+		$("#roomNumber").empty();
+		$("#roomNumber").append("<option>"+"请选择"+"</option>")
 		$("#typePrice").val(prices[obj.value]);
-		$.get("<%=basePath%>showrooms.do?roomType="+types[obj.value],function(data){
+		$.get("<%=basePath%>showrooms.do",{typeName:types[obj.value]},function(data){
 			console.log(data);
 			$.each(data, function() {
 				$("#roomNumber").append("<option value='>"+this.roomId+"'>"+this.roomNumber+"</option>")
 			})
 			
-		    //使用refresh方法更新UI以匹配新状态。
-	     //   $('#roomNumber').selectpicker('refresh');
-	        //render方法强制重新渲染引导程序 - 选择ui。
-	    //    $('#roomNumber').selectpicker('render');
+		   
 		});
+		
 	}
         
 	function editInfo(obj,flag){
